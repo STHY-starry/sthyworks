@@ -1,8 +1,7 @@
 package com.STHY.sthyworks.common.item;
 
-import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemEditableBook;
@@ -11,21 +10,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
-import net.minecraft.util.StatCollector;
 
-import java.util.List;
+import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class InstructionManual extends ItemEditableBook {
+
     private final String bookTitle = StatCollector.translateToLocal("book.instructionManual.title");
     private final String bookAuthor = "STHY";
-    private final String[] bookPages = {
-        buildPage(1),
-        buildPage(2),
-        buildPage(3),
-        buildPage(4)
-    };
+    private final String[] bookPages = { buildPage(1), buildPage(2), buildPage(3), buildPage(4) };
 
     public InstructionManual() {
         super();
@@ -46,13 +44,13 @@ public class InstructionManual extends ItemEditableBook {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         if (stack.hasTagCompound()) {
-            String author = stack.getTagCompound().getString("author");
+            String author = stack.getTagCompound()
+                .getString("author");
             if (!StringUtils.isNullOrEmpty(author)) {
                 tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocalFormatted("book.byAuthor", author));
             }
         }
     }
-
 
     private void initializeBook(ItemStack itemStackIn) {
         NBTTagCompound nbtTagCompound = new NBTTagCompound();

@@ -1,12 +1,13 @@
 package com.STHY.sthyworks.common.potion;
 
-import com.STHY.sthyworks.Config;
 import net.minecraft.entity.EntityLivingBase;
+
+import com.STHY.sthyworks.Config;
 
 public class FallProtection extends BasePotion {
 
     public FallProtection() {
-        super(Config.potionFallProtection, false, 0x90f5e4, "potion.fallProtection",0,-1,false);
+        super(Config.potionFallProtection, false, 0x90f5e4, "potion.fallProtection", 0, -1, false);
     }
 
     @Override

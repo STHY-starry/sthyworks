@@ -9,7 +9,6 @@ import com.STHY.sthyworks.common.block.BlockLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
 
 import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CraftingLoader {
@@ -23,7 +22,7 @@ public class CraftingLoader {
     private static void registerRecipe() {
         GameRegistry.addShapedRecipe(
             new ItemStack(ItemLoader.superPork),
-            new Object[]{"###", "#*#", "###", '#', Items.gold_ingot, '*', Items.porkchop});
+            new Object[] { "###", "#*#", "###", '#', Items.gold_ingot, '*', Items.porkchop });
     }
 
     private static void registerSmelting() {

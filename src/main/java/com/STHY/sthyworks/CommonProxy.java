@@ -7,8 +7,8 @@ import com.STHY.sthyworks.common.damege.DamegeLoader;
 import com.STHY.sthyworks.common.enchantment.EnchantmentLoader;
 import com.STHY.sthyworks.common.event.EventLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
-
 import com.STHY.sthyworks.common.potion.PotionLoader;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

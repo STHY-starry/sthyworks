@@ -1,19 +1,21 @@
 package com.STHY.sthyworks.common.potion;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BasePotion extends Potion {
 
-    private static final ResourceLocation texture = new ResourceLocation("sthyworks","textures/gui/potion.png");
+    private static final ResourceLocation texture = new ResourceLocation("sthyworks", "textures/gui/potion.png");
     private final int tickrate;
     private final boolean halveTickrateWithAmplifier;
 
-    public BasePotion(int id, boolean isBad, int color, String name, int iconIndex, int tickrate,boolean halveTickrateWithAmplifier) {
+    public BasePotion(int id, boolean isBad, int color, String name, int iconIndex, int tickrate,
+        boolean halveTickrateWithAmplifier) {
         super(id, isBad, color);
         this.setPotionName(name);
         this.tickrate = tickrate;
@@ -24,7 +26,9 @@ public class BasePotion extends Potion {
     @Override
     @SideOnly(Side.CLIENT)
     public int getStatusIconIndex() {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
+        Minecraft.getMinecraft()
+            .getTextureManager()
+            .bindTexture(texture);
         return super.getStatusIconIndex();
     }
 

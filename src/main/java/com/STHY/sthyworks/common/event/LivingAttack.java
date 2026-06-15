@@ -1,14 +1,15 @@
 package com.STHY.sthyworks.common.event;
 
-import com.STHY.sthyworks.common.damege.DamageSoul;
-import com.STHY.sthyworks.common.damege.DamegeLoader;
-import com.STHY.sthyworks.common.potion.PotionLoader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+
+import com.STHY.sthyworks.common.damege.DamegeLoader;
+import com.STHY.sthyworks.common.potion.PotionLoader;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class LivingAttack {
 
@@ -27,15 +28,20 @@ public class LivingAttack {
             PotionEffect potionEffect = attacker.getActivePotionEffect(PotionLoader.soulAnnihilation);
             if (potionEffect != null) {
 
-                if (victim.getEntityData().getBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG)) {
+                if (victim.getEntityData()
+                    .getBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG)) {
                     return;
                 }
 
                 float extraDamage = (potionEffect.getAmplifier() + 1) * 2;
-                EntityDamageSource entityDamageSource = new EntityDamageSource(DamegeLoader.Soul.getDamageType(), attacker);
-                victim.getEntityData().setBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG, true);
+                EntityDamageSource entityDamageSource = new EntityDamageSource(
+                    DamegeLoader.Soul.getDamageType(),
+                    attacker);
+                victim.getEntityData()
+                    .setBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG, true);
                 victim.attackEntityFrom(entityDamageSource, extraDamage);
-                victim.getEntityData().setBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG, false);
+                victim.getEntityData()
+                    .setBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG, false);
             }
         }
     }
