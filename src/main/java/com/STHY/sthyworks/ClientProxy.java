@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.STHY.sthyworks;
 
 public class ClientProxy extends CommonProxy {
 
