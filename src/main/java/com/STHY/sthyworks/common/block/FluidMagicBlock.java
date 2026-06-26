@@ -1,13 +1,15 @@
 package com.STHY.sthyworks.common.block;
 
-import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
-import com.STHY.sthyworks.common.fluid.FluidLoader;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.BlockFluidClassic;
+
+import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+import com.STHY.sthyworks.common.fluid.FluidLoader;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class FluidMagicBlock extends BlockFluidClassic {
 

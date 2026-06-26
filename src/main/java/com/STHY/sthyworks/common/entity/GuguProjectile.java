@@ -1,12 +1,13 @@
 package com.STHY.sthyworks.common.entity;
 
-import com.STHY.sthyworks.common.damege.DamageLoader;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
+import com.STHY.sthyworks.common.damege.DamageLoader;
 
 public class GuguProjectile extends EntityThrowable {
 

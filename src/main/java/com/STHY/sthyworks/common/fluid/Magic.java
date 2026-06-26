@@ -2,7 +2,7 @@ package com.STHY.sthyworks.common.fluid;
 
 import net.minecraftforge.fluids.Fluid;
 
-public class Magic extends Fluid{
+public class Magic extends Fluid {
 
     public Magic() {
         super("magic");

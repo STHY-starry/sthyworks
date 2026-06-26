@@ -6,6 +6,7 @@ import com.STHY.sthyworks.client.renderer.RenderAdorableGugu;
 import com.STHY.sthyworks.client.renderer.RenderGuguProjectile;
 import com.STHY.sthyworks.common.entity.AdorableGugu;
 import com.STHY.sthyworks.common.entity.GuguProjectile;
+
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;

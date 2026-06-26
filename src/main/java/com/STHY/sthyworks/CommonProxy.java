@@ -11,8 +11,8 @@ import com.STHY.sthyworks.common.event.EventLoader;
 import com.STHY.sthyworks.common.fluid.FluidLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
 import com.STHY.sthyworks.common.potion.PotionLoader;
-
 import com.STHY.sthyworks.common.worldgen.WorldGeneratorLoader;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

@@ -30,15 +30,15 @@ public class Position extends CommandBase {
         if (args.length > 1) {
             throw new WrongUsageException("commands.position.usage");
         } else {
-            EntityPlayerMP entityPlayerMP = args.length == 0 ? getCommandSenderAsPlayer(sender) : getPlayer(sender, args[0]);
+            EntityPlayerMP entityPlayerMP = args.length == 0 ? getCommandSenderAsPlayer(sender)
+                : getPlayer(sender, args[0]);
             Vec3 pos = entityPlayerMP.getPosition(1.0F);
             sender.addChatMessage(
                 new ChatComponentTranslation(
                     "command.position.success",
                     entityPlayerMP.getDisplayName(),
                     pos,
-                    entityPlayerMP.worldObj.provider.getDimensionName()
-                ));
+                    entityPlayerMP.worldObj.provider.getDimensionName()));
         }
     }
 }

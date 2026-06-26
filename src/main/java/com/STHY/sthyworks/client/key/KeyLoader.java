@@ -1,8 +1,10 @@
 package com.STHY.sthyworks.client.key;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.settings.KeyBinding;
+
 import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class KeyLoader {
 
@@ -10,6 +12,9 @@ public class KeyLoader {
         ClientRegistry.registerKeyBinding(showTime);
     }
 
-    public static KeyBinding showTime = new KeyBinding("key.sthyworks.showTime", Keyboard.KEY_H, "key.categories.sthyworks");
+    public static KeyBinding showTime = new KeyBinding(
+        "key.sthyworks.showTime",
+        Keyboard.KEY_H,
+        "key.categories.sthyworks");
 
 }
