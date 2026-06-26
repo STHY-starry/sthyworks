@@ -8,7 +8,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
-import com.STHY.sthyworks.common.damege.DamegeLoader;
+import com.STHY.sthyworks.common.damege.DamageLoader;
 
 public class SuperPork extends ItemFood {
 
@@ -25,7 +25,7 @@ public class SuperPork extends ItemFood {
         if (!worldIn.isRemote) {
             player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 1));
             player.addExperience(100);
-            player.attackEntityFrom(DamegeLoader.Pig, 10.0F);
+            player.attackEntityFrom(DamageLoader.Pig, 10.0F);
         }
         super.onFoodEaten(itemStack, worldIn, player);
     }

@@ -1,18 +1,29 @@
 item.superPork.name=Super Pork
 item.pigPickaxe.name=Pig Pickaxe
 item.instructionManual.name=STHY's Instruction Manual
+item.bucketMagic.name=Bucket of Magic
 item.dyeHelmet.name=Dye Helmet
 item.dyeChestplate.name=Dye Chestplate
 item.dyeLeggings.name=Dye Leggings
 item.dyeBoots.name=Dye Boots
 tile.pigBlock.name=Pig Block
 tile.guguBlock.name=Gugu Block
+tile.magic.name=Magic
 itemGroup.sthyworks=STHY's works
 death.attack.pig=%s died because he was too piggy!
 death.attack.soul=%1$s's soul was destroyed by %2$s !
 enchantment.fireBurn=Fire Burning
 potion.fallProtection=Fall Protection
 potion.soulAnnihilation=Soul Annihilation
+key.categories.sthyworks=sthyworks
+key.sthyworks.showTime=Show Time
+entity.AdorableGugu.name=Adorable Gugu
+
+event.pickup.message=§eYou picked up §r%s§e !
+
+message.sthyworks.showTime=The world time is: %s.
+command.position.usage=/position [player]
+command.position.success=Player %1$s is in a world named %3$s, with coordinates %2$s
 
 book.instructionManual.title=STHY's Instruction Manual
 book.instructionManual.page1.line1=STHY is too lazy to write an English version.
@@ -34,3 +45,7 @@ book.instructionManual.page3.line5=STHY is too lazy to write an English version.
 book.instructionManual.page3.line6=
 book.instructionManual.page4.line1=STHY is too lazy to write an English version.
 book.instructionManual.page4.line2=
+book.instructionManual.page4.line3=STHY is too lazy to write an English version.
+book.instructionManual.page4.line4=
+book.instructionManual.page4.line5=STHY is too lazy to write an English version.
+book.instructionManual.page4.line6=

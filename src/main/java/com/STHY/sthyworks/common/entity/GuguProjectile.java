@@ -1,0 +1,47 @@
+package com.STHY.sthyworks.common.entity;
+
+import com.STHY.sthyworks.common.damege.DamageLoader;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+public class GuguProjectile extends EntityThrowable {
+
+    public GuguProjectile(World world) {
+        super(world);
+    }
+
+    public GuguProjectile(World world, EntityLivingBase thrower) {
+        super(world, thrower);
+    }
+
+    public GuguProjectile(World world, double x, double y, double z) {
+        super(world, x, y, z);
+    }
+
+    @Override
+    protected float getGravityVelocity() {
+        return 0.0F;
+    }
+
+    @Override
+    protected void onImpact(MovingObjectPosition position) {
+        if (position.entityHit != null) {
+            EntityLivingBase thrower = this.getThrower();
+            DamageSource damageSource;
+            if (thrower == null) {
+                damageSource = DamageLoader.Soul;
+            } else {
+                damageSource = new EntityDamageSource(DamageLoader.Soul.getDamageType(), thrower).setProjectile();
+            }
+            position.entityHit.attackEntityFrom(damageSource, 5.0F);
+        }
+
+        if (!this.worldObj.isRemote) {
+            this.setDead();
+        }
+    }
+}

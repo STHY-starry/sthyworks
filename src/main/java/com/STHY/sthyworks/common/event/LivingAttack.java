@@ -6,7 +6,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
-import com.STHY.sthyworks.common.damege.DamegeLoader;
+import com.STHY.sthyworks.common.damege.DamageLoader;
 import com.STHY.sthyworks.common.potion.PotionLoader;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -35,7 +35,7 @@ public class LivingAttack {
 
                 float extraDamage = (potionEffect.getAmplifier() + 1) * 2;
                 EntityDamageSource entityDamageSource = new EntityDamageSource(
-                    DamegeLoader.Soul.getDamageType(),
+                    DamageLoader.Soul.getDamageType(),
                     attacker);
                 victim.getEntityData()
                     .setBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG, true);

@@ -10,11 +10,19 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = sthyworks.MODID, version = Tags.VERSION, name = "sthyworks", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = sthyworks.MODID,
+    version = Tags.VERSION,
+    name = "sthyworks",
+    dependencies = "required-after:neid;",
+    acceptedMinecraftVersions = "[1.7.10]")
 public class sthyworks {
 
     public static final String MODID = "sthyworks";
     public static final Logger LOG = LogManager.getLogger(MODID);
+
+    @Mod.Instance(MODID)
+    public static sthyworks instance;
 
     @SidedProxy(clientSide = "com.STHY.sthyworks.ClientProxy", serverSide = "com.STHY.sthyworks.CommonProxy")
     public static CommonProxy proxy;

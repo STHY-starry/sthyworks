@@ -10,12 +10,12 @@ public class BlockLoader {
     public static Block pigBlock = new pigBlock();
     public static Block guguBlock = new guguBlock();
 
-    public BlockLoader(FMLPreInitializationEvent event) {
-        register(pigBlock, "pigBlock");
-        register(guguBlock, "guguBlock");
-    }
+    public static Block fluidMagic = new FluidMagicBlock();
 
-    private static void register(Block block, String name) {
-        GameRegistry.registerBlock(block, name);
+    public BlockLoader(FMLPreInitializationEvent event) {
+        GameRegistry.registerBlock(pigBlock, "pigBlock");
+        GameRegistry.registerBlock(guguBlock, "guguBlock");
+
+        GameRegistry.registerBlock(fluidMagic, "magic");
     }
 }
