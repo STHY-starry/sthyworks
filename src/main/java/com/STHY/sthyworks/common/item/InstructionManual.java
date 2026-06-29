@@ -23,13 +23,7 @@ public class InstructionManual extends ItemEditableBook {
 
     private final String bookTitle = StatCollector.translateToLocal("book.instructionManual.title");
     private final String bookAuthor = "STHY";
-    private final String[] bookPages = {
-        buildPage(1),
-        buildPage(2),
-        buildPage(3),
-        buildPage(4),
-        buildPage(5),
-    };
+    private final String[] bookPages = { buildPage(1), buildPage(2), buildPage(3), buildPage(4), buildPage(5), };
 
     public InstructionManual() {
         super();

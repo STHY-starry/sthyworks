@@ -16,9 +16,11 @@ public class GuguProjectile extends EntityThrowable {
     public GuguProjectile(World world) {
         super(world);
     }
+
     public GuguProjectile(World world, EntityLivingBase thrower) {
         super(world, thrower);
     }
+
     public GuguProjectile(World world, double x, double y, double z) {
         super(world, x, y, z);
     }
@@ -26,6 +28,7 @@ public class GuguProjectile extends EntityThrowable {
     public void setDamage(float damage) {
         this.damage = damage;
     }
+
     public float getDamage() {
         return damage;
     }

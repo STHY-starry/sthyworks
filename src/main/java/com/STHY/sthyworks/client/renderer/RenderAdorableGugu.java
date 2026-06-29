@@ -23,5 +23,4 @@ public class RenderAdorableGugu extends RenderBiped {
         return texture;
     }
 
-
 }

@@ -1,6 +1,7 @@
 package com.STHY.sthyworks.common.item;
 
-import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,10 +15,12 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
-import java.util.List;
+import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
 
 public class ImmortalSword extends ItemSword {
-    public static final Item.ToolMaterial ImmortalSwordMaterial = EnumHelper.addToolMaterial("ImmortalSwordMaterial", 0, 0, 10.0F, 4.0F, 22);
+
+    public static final Item.ToolMaterial ImmortalSwordMaterial = EnumHelper
+        .addToolMaterial("ImmortalSwordMaterial", 0, 0, 10.0F, 4.0F, 22);
 
     public ImmortalSword() {
         super(ImmortalSwordMaterial);
@@ -54,11 +57,11 @@ public class ImmortalSword extends ItemSword {
         Vec3 endPos = Vec3.createVectorHelper(
             startPos.xCoord + lookVec.xCoord * maxDistance,
             startPos.yCoord + lookVec.yCoord * maxDistance,
-            startPos.zCoord + lookVec.zCoord * maxDistance
-        );
+            startPos.zCoord + lookVec.zCoord * maxDistance);
 
         List<Entity> entities = worldIn.getEntitiesWithinAABBExcludingEntity(
-            player, player.boundingBox.expand(maxDistance, maxDistance, maxDistance));
+            player,
+            player.boundingBox.expand(maxDistance, maxDistance, maxDistance));
         EntityLivingBase closestTarget = null;
 
         for (Entity entity : entities) {
