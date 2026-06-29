@@ -12,6 +12,7 @@ public class ItemLoader {
     public static Item pigPickaxe = new PigPickaxe();
     public static Item instructionManual = new InstructionManual();
     public static Item bucketMagic = new BucketMagic();
+    public static Item immortalSword = new ImmortalSword();;
 
     public static ItemArmor dyeHelmet = new DyeArmor(0, "dyeHelmet", "dye");
     public static ItemArmor dyeChestplate = new DyeArmor(1, "dyeChestplate", "dye");
@@ -23,6 +24,7 @@ public class ItemLoader {
         register(pigPickaxe, "pigPickaxe");
         register(instructionManual, "instructionManual");
         register(bucketMagic, "bucketMagic");
+        register(immortalSword, "immortalSword");
 
         register(dyeHelmet, "dyeHelmet");
         register(dyeChestplate, "dyeChestplate");

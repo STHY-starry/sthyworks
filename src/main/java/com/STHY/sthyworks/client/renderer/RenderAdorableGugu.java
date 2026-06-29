@@ -22,4 +22,6 @@ public class RenderAdorableGugu extends RenderBiped {
     protected ResourceLocation getEntityTexture(Entity entity) {
         return texture;
     }
+
+
 }

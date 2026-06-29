@@ -11,8 +11,12 @@ public class EntityLoader {
     private static int nextID = 0;
 
     public EntityLoader() {
-        registerEntity(AdorableGugu.class, "AdorableGugu", 64, 3, true, 0xFFC0CB, 0xFFFFE0);
-        registerProjectile(GuguProjectile.class, "GuguProjectile", 64, 10, true);
+        registerEntity(AdorableGugu.class, "AdorableGugu",
+            64, 3, true,
+            0xFFC0CB, 0xFFFFE0);
+
+        registerProjectile(GuguProjectile.class, "GuguProjectile",
+            64, 5, true);
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange,

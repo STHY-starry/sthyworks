@@ -11,16 +11,23 @@ import com.STHY.sthyworks.common.damege.DamageLoader;
 
 public class GuguProjectile extends EntityThrowable {
 
+    private float damage;
+
     public GuguProjectile(World world) {
         super(world);
     }
-
     public GuguProjectile(World world, EntityLivingBase thrower) {
         super(world, thrower);
     }
-
     public GuguProjectile(World world, double x, double y, double z) {
         super(world, x, y, z);
+    }
+
+    public void setDamage(float damage) {
+        this.damage = damage;
+    }
+    public float getDamage() {
+        return damage;
     }
 
     @Override
@@ -38,7 +45,7 @@ public class GuguProjectile extends EntityThrowable {
             } else {
                 damageSource = new EntityDamageSource(DamageLoader.Soul.getDamageType(), thrower).setProjectile();
             }
-            position.entityHit.attackEntityFrom(damageSource, 5.0F);
+            position.entityHit.attackEntityFrom(damageSource, damage);
         }
 
         if (!this.worldObj.isRemote) {
