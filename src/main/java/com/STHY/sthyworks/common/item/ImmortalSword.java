@@ -31,7 +31,6 @@ public class ImmortalSword extends ItemSword {
 
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean par4) {
-        super.addInformation(itemStack, entityPlayer, list, par4);
         list.add(StatCollector.translateToLocal("item.immortalSword.tooltips.line1"));
         list.add(StatCollector.translateToLocal("item.immortalSword.tooltips.line2"));
         list.add(StatCollector.translateToLocal("item.immortalSword.tooltips.line3"));

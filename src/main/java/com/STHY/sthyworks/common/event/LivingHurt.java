@@ -12,13 +12,11 @@ public class LivingHurt {
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
 
-        // Fall Protection
-        if (event.source.getDamageType()
-            .equals("fall")) {
-            PotionEffect potionEffect = event.entityLiving.getActivePotionEffect(PotionLoader.fallProtection);
-            if (potionEffect != null) {
-                event.ammount /= potionEffect.getAmplifier() + 2;
-            }
+        // ReceivedDamageIncrease
+        PotionEffect receivedDamageIncreaseEffect = event.entityLiving
+            .getActivePotionEffect(PotionLoader.receivedDamageIncrease);
+        if (receivedDamageIncreaseEffect != null) {
+            event.ammount *= 1 + 0.1F * (receivedDamageIncreaseEffect.getAmplifier() + 1);
         }
     }
 }

@@ -38,5 +38,6 @@ dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:ServerUtilities:2.4.1:dev")
 
     devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughIds:2.1.11:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:Avaritia:1.97:dev")
 //    devOnlyNonPublishable("com.github.GTNewHorizons:Angelica:2.1.43:dev")
 }

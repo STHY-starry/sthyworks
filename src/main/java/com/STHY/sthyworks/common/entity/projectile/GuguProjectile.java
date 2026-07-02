@@ -1,4 +1,4 @@
-package com.STHY.sthyworks.common.entity;
+package com.STHY.sthyworks.common.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -40,6 +40,14 @@ public class GuguProjectile extends EntityThrowable {
 
     @Override
     protected void onImpact(MovingObjectPosition position) {
+
+        if (position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+            if (!worldObj.isRemote) {
+                this.setDead();
+                return;
+            }
+        }
+
         if (position.entityHit != null) {
             EntityLivingBase thrower = this.getThrower();
             DamageSource damageSource;
@@ -49,10 +57,9 @@ public class GuguProjectile extends EntityThrowable {
                 damageSource = new EntityDamageSource(DamageLoader.Soul.getDamageType(), thrower).setProjectile();
             }
             position.entityHit.attackEntityFrom(damageSource, damage);
-        }
-
-        if (!this.worldObj.isRemote) {
-            this.setDead();
+            if (!this.worldObj.isRemote) {
+                this.setDead();
+            }
         }
     }
 }

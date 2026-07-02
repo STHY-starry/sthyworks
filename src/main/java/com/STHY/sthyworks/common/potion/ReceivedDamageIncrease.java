@@ -4,10 +4,10 @@ import net.minecraft.entity.EntityLivingBase;
 
 import com.STHY.sthyworks.Config;
 
-public class FallProtection extends BasePotion {
+public class ReceivedDamageIncrease extends BasePotion {
 
-    public FallProtection() {
-        super(Config.potionFallProtection, false, 0x90f5e4, "potion.fallProtection", 0, -1, false);
+    public ReceivedDamageIncrease() {
+        super(Config.potionReceivedDamageIncrease, true, 0x90f5e4, "potion.receivedDamageIncrease", 0, -1, false);
     }
 
     @Override

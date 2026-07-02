@@ -6,11 +6,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class PotionLoader {
 
-    public static Potion fallProtection;
+    public static Potion receivedDamageIncrease;
     public static Potion soulAnnihilation;
 
     public PotionLoader(FMLPreInitializationEvent event) {
-        fallProtection = new FallProtection();
+        receivedDamageIncrease = new ReceivedDamageIncrease();
         soulAnnihilation = new SoulAnnihilation();
     }
 }

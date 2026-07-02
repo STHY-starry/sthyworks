@@ -2,6 +2,8 @@ package com.STHY.sthyworks.common.entity;
 
 import net.minecraft.entity.Entity;
 
+import com.STHY.sthyworks.common.entity.projectile.DemonThornProjectile;
+import com.STHY.sthyworks.common.entity.projectile.GuguProjectile;
 import com.STHY.sthyworks.sthyworks;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -14,6 +16,7 @@ public class EntityLoader {
         registerEntity(AdorableGugu.class, "AdorableGugu", 64, 3, true, 0xFFC0CB, 0xFFFFE0);
 
         registerProjectile(GuguProjectile.class, "GuguProjectile", 64, 5, true);
+        registerProjectile(DemonThornProjectile.class, "DemonThornProjectile", 64, 5, true);
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange,

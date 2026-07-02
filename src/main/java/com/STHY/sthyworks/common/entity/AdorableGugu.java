@@ -20,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import com.STHY.sthyworks.common.block.BlockLoader;
+import com.STHY.sthyworks.common.entity.projectile.GuguProjectile;
 
 public class AdorableGugu extends EntityCreature implements IRangedAttackMob {
 

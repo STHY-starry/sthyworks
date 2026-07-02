@@ -20,8 +20,13 @@ public class Config {
         enchantmentFireBurn = configuration
             .getInt("enchantmentFireBurn", Configuration.CATEGORY_GENERAL, 36, 0, 255, "Fire burn enchantment id. ");
 
-        potionFallProtection = configuration
-            .getInt("potionFallProtection", Configuration.CATEGORY_GENERAL, 141, 0, 255, "Fall protection potion id. ");
+        potionReceivedDamageIncrease = configuration.getInt(
+            "potionReceivedDamageIncrease",
+            Configuration.CATEGORY_GENERAL,
+            141,
+            0,
+            255,
+            "ReceivedDamageIncrease potion id. ");
         potionSoulAnnihilation = configuration.getInt(
             "potionSoulAnnihilation",
             Configuration.CATEGORY_GENERAL,
@@ -40,7 +45,7 @@ public class Config {
 
     public static int enchantmentFireBurn = 36;
 
-    public static int potionFallProtection = 141;
+    public static int potionReceivedDamageIncrease = 141;
     public static int potionSoulAnnihilation = 142;
 
 }

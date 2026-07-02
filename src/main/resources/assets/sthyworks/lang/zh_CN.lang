@@ -7,14 +7,17 @@ item.dyeChestplate.name=染料胸甲
 item.dyeLeggings.name=染料护腿
 item.dyeBoots.name=染料靴子
 item.immortalSword.name=§b不朽之剑
+item.demonThorn.name=§8§l魔刺
+item.starrySky.name=§9星空
 tile.pigBlock.name=猪猪方块
-tile.guguBlock.name=咕咕方块
+tile.guguBlock.name=§c咕咕方块
 tile.magic.name=魔法
 itemGroup.sthyworks=STHY的一些作品
 death.attack.pig=%1$s 因为太猪所以死了！
 death.attack.soul=%1$s 的灵魂被 %2$s 摧毁了！
+death.attack.ordinary=%1$s 被 %2$s 杀死了！
 enchantment.fireBurn=火焰灼烧 
-potion.fallProtection=摔落保护
+potion.receivedDamageIncrease=受伤加深
 potion.soulAnnihilation=灵魂湮灭
 key.categories.sthyworks=sthyworks
 key.sthyworks.showTime=显示时间
@@ -28,8 +31,17 @@ command.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 
 
 item.immortalSword.tooltips.line1=§e极为珍贵的武器，曾经由一位勇者持有
 item.immortalSword.tooltips.line2=§e剑身上镶嵌的蓝宝石依然璀璨
-item.immortalSword.tooltips.line3=§f这把武器不会消耗耐久
+item.immortalSword.tooltips.line3=§f这把武器不受耐久影响
 item.immortalSword.tooltips.line4=§f右键可以刺穿空间，对视线上20格内的最近目标造成一次与左键相同效果的攻击
+
+item.demonThorn.tooltips.line1=§7不知从何而来的武器。其材质既非金石，亦非竹木，诡异的铭文似乎流露着幽晦的光芒
+item.demonThorn.tooltips.line2=§f这把武器不受耐久影响,右键可以掷出魔刺
+item.demonThorn.tooltips.line3=§f魔刺命中可以使目标受伤加深，最多穿透3个生物，每次穿透都会使后续伤害衰减
+item.demonThorn.tooltips.line4=§f达到穿透上限或接触方块会自动唤回
+item.demonThorn.tooltips.line5=§f魔刺已被掷出的情况下再次使用，可以降临在魔刺所在位置处，并将其回收
+item.demonThorn.tooltips.line6=§f若处于潜行状态，则仅唤回魔刺
+
+item.starrySky.tooltips.line1=§f右键使用立刻将时间调整为午夜
 
 book.instructionManual.title=STHY的使用说明
 book.instructionManual.page1.line1=STHY学习mod制作，练手的作品。
@@ -57,3 +69,5 @@ book.instructionManual.page4.line5=流体魔法以及对应的桶。其行为与
 book.instructionManual.page4.line6=
 book.instructionManual.page5.line1=武器不朽之剑，不受耐久影响，右键有特殊功能。
 book.instructionManual.page5.line2=
+book.instructionManual.page5.line3=武器魔刺，不受耐久影响，右键有特殊功能。
+book.instructionManual.page5.line4=
