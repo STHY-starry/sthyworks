@@ -1,6 +1,5 @@
 package com.STHY.sthyworks.common.entity.projectile;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -94,7 +93,7 @@ public class DemonThornProjectile extends EntityThrowable {
         }
 
         if (position.entityHit instanceof EntityLivingBase) {
-            if (!worldObj.isRemote){
+            if (!worldObj.isRemote) {
                 EntityLivingBase thrower = this.getThrower();
                 DamageSource damageSource;
                 if (thrower == null) {
