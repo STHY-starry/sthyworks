@@ -5,14 +5,14 @@ import net.minecraft.block.material.Material;
 
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
 
-public class guguBlock extends Block {
+public class GuguBlock extends Block {
 
-    public guguBlock() {
+    public GuguBlock() {
         super(Material.rock);
         this.setBlockName("guguBlock");
         this.setHardness(0.5F);
-        this.setResistance(10000.0F);
-        this.setStepSound(Block.soundTypePiston);
+        this.setResistance(10.0F);
+        this.setStepSound(Block.soundTypeStone);
         this.setBlockTextureName("sthyworks:guguBlock");
         this.setHarvestLevel("pickaxe", 1);
         this.setCreativeTab(CreativeTabsLoader.tabsthyworks);

@@ -36,8 +36,12 @@
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.101-GTNH:dev")
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:ServerUtilities:2.4.1:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:waila:1.19.30:dev")
 
-    devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughIds:2.1.11:dev")
+//    devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughIds:2.1.11:dev")
     devOnlyNonPublishable("com.github.GTNewHorizons:Avaritia:1.97:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:Baubles-Expanded:2.2.21-GTNH:dev")
+    devOnlyNonPublishable("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
+//    devOnlyNonPublishable("com.github.GTNewHorizons:StructureLib:1.4.42:dev")
 //    devOnlyNonPublishable("com.github.GTNewHorizons:Angelica:2.1.43:dev")
 }

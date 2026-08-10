@@ -21,10 +21,10 @@ public class StarrySky extends Item implements ICosmicRenderItem {
     private IIcon cosmicMask;
 
     public StarrySky() {
-        super();
         setUnlocalizedName("starrySky");
         setTextureName("sthyworks:starrySky");
         setCreativeTab(CreativeTabsLoader.tabsthyworks);
+        this.setMaxStackSize(1);
     }
 
     @Override

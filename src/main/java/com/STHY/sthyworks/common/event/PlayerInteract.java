@@ -13,24 +13,24 @@ import com.STHY.sthyworks.common.block.BlockLoader;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class PlayerRightClickBlock {
+public class PlayerInteract {
 
     @SubscribeEvent
-    public void onPlayerRightClickBlock(PlayerInteractEvent event) {
+    public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-
-        Block clickedBlock = event.world.getBlock(event.x, event.y, event.z);
-
-        if (clickedBlock != BlockLoader.pigBlock) {
-            return;
-        }
-
         if (event.entityPlayer.worldObj.isRemote) {
             return;
         }
+        Block clickedBlock = event.world.getBlock(event.x, event.y, event.z);
 
+        if (clickedBlock == BlockLoader.pigBlock) {
+            interactPigBlock(event);
+        }
+    }
+
+    public void interactPigBlock(PlayerInteractEvent event) {
         event.setCanceled(true);
 
         String message = "§d你右键点击了猪猪方块！§6哼唧~";

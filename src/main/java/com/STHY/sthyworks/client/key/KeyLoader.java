@@ -9,12 +9,11 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 public class KeyLoader {
 
     public KeyLoader() {
-        ClientRegistry.registerKeyBinding(showTime);
+        ClientRegistry.registerKeyBinding(toggleTooltipsDisplay);
     }
 
-    public static KeyBinding showTime = new KeyBinding(
-        "key.sthyworks.showTime",
-        Keyboard.KEY_H,
+    public static KeyBinding toggleTooltipsDisplay = new KeyBinding(
+        "key.sthyworks.toggleTooltipsDisplay",
+        Keyboard.KEY_LSHIFT,
         "key.categories.sthyworks");
-
 }

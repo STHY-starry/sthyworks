@@ -36,7 +36,7 @@ public class BasePotion extends Potion {
     public boolean isReady(int duration, int amplifier) {
         if (tickrate < 0) return false;
         int k = halveTickrateWithAmplifier ? (tickrate >> amplifier) : tickrate;
-        return k > 0 ? duration % k == 0 : true;
+        return k > 1 ? duration % k == 0 : true;
     }
 
     @Override

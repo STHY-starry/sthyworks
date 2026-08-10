@@ -9,8 +9,12 @@ import com.STHY.sthyworks.common.enchantment.EnchantmentLoader;
 import com.STHY.sthyworks.common.entity.EntityLoader;
 import com.STHY.sthyworks.common.event.EventLoader;
 import com.STHY.sthyworks.common.fluid.FluidLoader;
+import com.STHY.sthyworks.common.inventory.GuiElementLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
 import com.STHY.sthyworks.common.potion.PotionLoader;
+import com.STHY.sthyworks.common.thaumcraft.AspectLoader;
+import com.STHY.sthyworks.common.thaumcraft.ResearchLoader;
+import com.STHY.sthyworks.common.tileentity.TileEntityLoader;
 import com.STHY.sthyworks.common.worldgen.WorldGeneratorLoader;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -24,12 +28,14 @@ public class CommonProxy {
         Config.synchronizeConfiguration(event);
 
         sthyworks.LOG.info("sthyworks: " + Tags.VERSION);
-        new CreativeTabsLoader(event);
-        new FluidLoader(event);
-        new ItemLoader(event);
-        new BlockLoader(event);
+        new AspectLoader();
+        new CreativeTabsLoader();
+        new FluidLoader();
+        new ItemLoader();
+        new TileEntityLoader();
+        new BlockLoader();
         new DamageLoader();
-        new PotionLoader(event);
+        new PotionLoader();
         new EntityLoader();
     }
 
@@ -38,9 +44,12 @@ public class CommonProxy {
         new EnchantmentLoader();
         new EventLoader();
         new WorldGeneratorLoader();
+        new GuiElementLoader();
     }
 
-    public void postInit(FMLPostInitializationEvent event) {}
+    public void postInit(FMLPostInitializationEvent event) {
+        new ResearchLoader();
+    }
 
     public void serverStarting(FMLServerStartingEvent event) {
         new CommandLoader(event);

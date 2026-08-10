@@ -9,16 +9,18 @@ public class Config {
     public static void synchronizeConfiguration(FMLPreInitializationEvent event) {
         Configuration configuration = new Configuration(event.getSuggestedConfigurationFile());
 
-        pigBlockBurnTime = configuration.getInt(
-            "pigBlockBurnTime",
-            Configuration.CATEGORY_GENERAL,
-            3200,
-            0,
-            1000000,
-            "burning time of a PigBlock.");
+        pigBlockBurnTime = configuration
+            .getInt("pigBlockBurnTime", Configuration.CATEGORY_GENERAL, 3200, 0, 100000, "burning time of a PigBlock.");
 
         enchantmentFireBurn = configuration
             .getInt("enchantmentFireBurn", Configuration.CATEGORY_GENERAL, 36, 0, 255, "Fire burn enchantment id. ");
+        enchantmentMagicBoost = configuration.getInt(
+            "enchantmentMagicBoost",
+            Configuration.CATEGORY_GENERAL,
+            37,
+            0,
+            255,
+            "Magic boost enchantment id. ");
 
         potionReceivedDamageIncrease = configuration.getInt(
             "potionReceivedDamageIncrease",
@@ -34,6 +36,8 @@ public class Config {
             0,
             255,
             "Soul annihilation potion id. ");
+        potionDeadlyPoison = configuration
+            .getInt("potionDeadlyPoison", Configuration.CATEGORY_GENERAL, 143, 0, 255, "Deadly poison potion id. ");
 
         if (configuration.hasChanged()) {
             configuration.save();
@@ -44,8 +48,10 @@ public class Config {
     public static int pigBlockBurnTime = 3200;
 
     public static int enchantmentFireBurn = 36;
+    public static int enchantmentMagicBoost = 37;
 
     public static int potionReceivedDamageIncrease = 141;
     public static int potionSoulAnnihilation = 142;
+    public static int potionDeadlyPoison = 143;
 
 }

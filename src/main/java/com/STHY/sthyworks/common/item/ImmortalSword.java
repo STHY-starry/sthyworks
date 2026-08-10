@@ -2,20 +2,17 @@ package com.STHY.sthyworks.common.item;
 
 import java.util.List;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+import com.STHY.sthyworks.common.util.sthyUtils;
 
 public class ImmortalSword extends ItemSword {
 
@@ -38,50 +35,19 @@ public class ImmortalSword extends ItemSword {
     }
 
     @Override
+    public boolean isItemTool(ItemStack itemStack) {
+        return this.getItemStackLimit(itemStack) == 1;
+    }
+
+    @Override
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
         if (!worldIn.isRemote) {
-            double maxDistance = 20.0D;
-            EntityLivingBase target = getClosestTarget(worldIn, player, maxDistance);
+            EntityLivingBase target = sthyUtils.getClosestTarget(worldIn, player, 20.0D);
             if (target != null) {
                 player.attackTargetEntityWithCurrentItem(target);
             }
         }
         super.onItemRightClick(itemStackIn, worldIn, player);
         return itemStackIn;
-    }
-
-    private EntityLivingBase getClosestTarget(World worldIn, EntityPlayer player, double maxDistance) {
-        Vec3 startPos = Vec3.createVectorHelper(player.posX, player.posY + player.getEyeHeight(), player.posZ);
-        Vec3 lookVec = player.getLookVec();
-        Vec3 endPos = Vec3.createVectorHelper(
-            startPos.xCoord + lookVec.xCoord * maxDistance,
-            startPos.yCoord + lookVec.yCoord * maxDistance,
-            startPos.zCoord + lookVec.zCoord * maxDistance);
-
-        List<Entity> entities = worldIn.getEntitiesWithinAABBExcludingEntity(
-            player,
-            player.boundingBox.expand(maxDistance, maxDistance, maxDistance));
-        EntityLivingBase closestTarget = null;
-
-        for (Entity entity : entities) {
-            if (!(entity instanceof EntityLivingBase)) {
-                continue;
-            }
-            if (!entity.canBeCollidedWith()) {
-                continue;
-            }
-            double closestDistance = maxDistance;
-            float borderSize = entity.getCollisionBorderSize();
-            AxisAlignedBB aabb = entity.boundingBox.expand(borderSize, borderSize, borderSize);
-            MovingObjectPosition mop = aabb.calculateIntercept(startPos, endPos);
-            if (mop != null) {
-                double distance = startPos.distanceTo(mop.hitVec);
-                if (distance < closestDistance) {
-                    closestTarget = (EntityLivingBase) entity;
-                    closestDistance = distance;
-                }
-            }
-        }
-        return closestTarget;
     }
 }

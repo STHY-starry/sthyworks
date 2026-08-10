@@ -18,7 +18,6 @@ public class LivingAttack {
     @SubscribeEvent
     public void onLivingAttack(LivingAttackEvent event) {
 
-        // Soul Annihilation deals additional damage
         EntityLivingBase victim = event.entityLiving;
         Entity attackerEntity = event.source.getSourceOfDamage();
 
@@ -28,12 +27,13 @@ public class LivingAttack {
             PotionEffect potionEffect = attacker.getActivePotionEffect(PotionLoader.soulAnnihilation);
             if (potionEffect != null) {
 
+                // Soul Annihilation deals additional damage
                 if (victim.getEntityData()
                     .getBoolean(EXTRA_SoulAnnihilationDAMAGE_TAG)) {
                     return;
                 }
 
-                float extraDamage = (potionEffect.getAmplifier() + 1) * 2;
+                float extraDamage = (potionEffect.getAmplifier() + 1) * 0.05F * event.ammount;
                 EntityDamageSource entityDamageSource = new EntityDamageSource(
                     DamageLoader.Soul.getDamageType(),
                     attacker);

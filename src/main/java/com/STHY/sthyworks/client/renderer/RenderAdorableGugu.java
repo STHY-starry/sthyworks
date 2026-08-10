@@ -23,4 +23,8 @@ public class RenderAdorableGugu extends RenderBiped {
         return texture;
     }
 
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    }
 }

@@ -1,4 +1,4 @@
-package com.STHY.sthyworks.common.entity.projectile;
+package com.STHY.sthyworks.common.entity.withoutEgg;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -40,12 +40,11 @@ public class GuguProjectile extends EntityThrowable {
 
     @Override
     protected void onImpact(MovingObjectPosition position) {
+        if (worldObj.isRemote) return;
 
         if (position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-            if (!worldObj.isRemote) {
-                this.setDead();
-                return;
-            }
+            this.setDead();
+            return;
         }
 
         if (position.entityHit != null) {

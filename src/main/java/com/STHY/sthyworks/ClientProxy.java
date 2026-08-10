@@ -1,17 +1,25 @@
 package com.STHY.sthyworks;
 
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.init.Items;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import com.STHY.sthyworks.client.event.ClientEventLoader;
 import com.STHY.sthyworks.client.key.KeyLoader;
 import com.STHY.sthyworks.client.renderer.RenderAdorableGugu;
 import com.STHY.sthyworks.client.renderer.RenderDemonThornProjectile;
-import com.STHY.sthyworks.client.renderer.RenderGuguProjectile;
+import com.STHY.sthyworks.client.renderer.RenderPathogenesisProjectile;
+import com.STHY.sthyworks.client.renderer.RenderStrawMan;
+import com.STHY.sthyworks.client.renderer.RenderTileEntityGuguAltar;
 import com.STHY.sthyworks.common.entity.AdorableGugu;
-import com.STHY.sthyworks.common.entity.projectile.DemonThornProjectile;
-import com.STHY.sthyworks.common.entity.projectile.GuguProjectile;
+import com.STHY.sthyworks.common.entity.StrawMan;
+import com.STHY.sthyworks.common.entity.withoutEgg.DemonThornProjectile;
+import com.STHY.sthyworks.common.entity.withoutEgg.GuguProjectile;
+import com.STHY.sthyworks.common.entity.withoutEgg.PathogenesisProjectile;
 import com.STHY.sthyworks.common.item.ItemLoader;
+import com.STHY.sthyworks.common.tileentity.TileEntityGuguAltar;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -32,6 +40,7 @@ public class ClientProxy extends CommonProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
         registerEntityRenderers();
+        registerTileEntityRenderers();
         registerItemRenderers();
         new KeyLoader();
         new ClientEventLoader();
@@ -49,13 +58,19 @@ public class ClientProxy extends CommonProxy {
 
     private void registerEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(AdorableGugu.class, new RenderAdorableGugu());
-        RenderingRegistry.registerEntityRenderingHandler(GuguProjectile.class, new RenderGuguProjectile());
+        RenderingRegistry.registerEntityRenderingHandler(StrawMan.class, new RenderStrawMan());
+
+        RenderingRegistry.registerEntityRenderingHandler(GuguProjectile.class, new RenderSnowball(Items.apple, 0));
         RenderingRegistry.registerEntityRenderingHandler(DemonThornProjectile.class, new RenderDemonThornProjectile());
+        RenderingRegistry
+            .registerEntityRenderingHandler(PathogenesisProjectile.class, new RenderPathogenesisProjectile());
+    }
+
+    private void registerTileEntityRenderers() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGuguAltar.class, new RenderTileEntityGuguAltar());
     }
 
     private void registerItemRenderers() {
-        MinecraftForgeClient.registerItemRenderer(ItemLoader.starrySky, cosmicItemRenderer);
+        MinecraftForgeClient.registerItemRenderer(ItemLoader.starrySky, new CosmicItemRenderer());
     }
-
-    CosmicItemRenderer cosmicItemRenderer = new CosmicItemRenderer();
 }

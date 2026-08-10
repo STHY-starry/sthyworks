@@ -16,11 +16,12 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.STHY.sthyworks.common.block.BlockLoader;
-import com.STHY.sthyworks.common.entity.projectile.GuguProjectile;
+import com.STHY.sthyworks.common.entity.withoutEgg.GuguProjectile;
 
 public class AdorableGugu extends EntityCreature implements IRangedAttackMob {
 
@@ -38,6 +39,11 @@ public class AdorableGugu extends EntityCreature implements IRangedAttackMob {
     }
 
     @Override
+    protected void entityInit() {
+        super.entityInit();
+    }
+
+    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
     }
@@ -45,9 +51,19 @@ public class AdorableGugu extends EntityCreature implements IRangedAttackMob {
     @Override
     protected void dropFewItems(boolean hitByPlayer, int lootingLevel) {
         if (this.rand.nextInt(2) == 0) {
-            this.dropItem(Item.getItemFromBlock(BlockLoader.guguBlock), 1);
+            this.entityDropItem(new ItemStack(BlockLoader.guguBlock, 1), 1);
         }
         super.dropFewItems(hitByPlayer, lootingLevel);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
     }
 
     @Override
@@ -104,7 +120,6 @@ public class AdorableGugu extends EntityCreature implements IRangedAttackMob {
         double dy = target.boundingBox.maxY - (double) (target.height * 0.3F) - projectile.posY;
         double dz = target.posZ - projectile.posZ;
 
-        // 子弹不受重力影响，不加抛物线修正
         projectile.setThrowableHeading(dx, dy, dz, 1.4F, 6.0F);
         projectile.setDamage(
             (float) this.getEntityAttribute(rangedAttackDamage)

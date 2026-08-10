@@ -13,7 +13,7 @@ public class CreativeTabssthyworks extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return ItemLoader.superPork;
+        return ItemLoader.instructionManual;
     }
 
 }
