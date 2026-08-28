@@ -7,13 +7,12 @@ public class DamageLoader {
     public static DamageSource Pig;
     public static DamageSource Soul;
     public static DamageSource Ordinary;
-    public static DamageSource DeadlyPoison;
 
     public DamageLoader() {
 
-        Pig = new DamagePig();
-        Soul = new DamageSoul();;
-        Ordinary = new DamageOrdinary();
-        DeadlyPoison = new DamageDeadlyPoison();
+        Pig = new DamageSource("pig").setDamageAllowedInCreativeMode();
+        Soul = new DamageSource("soul").setDamageIsAbsolute()
+            .setDamageAllowedInCreativeMode();
+        Ordinary = new DamageSource("ordinary");
     }
 }

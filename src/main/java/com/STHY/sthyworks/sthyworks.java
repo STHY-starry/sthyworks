@@ -14,8 +14,9 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     modid = sthyworks.MODID,
     version = Tags.VERSION,
     name = "sthyworks",
-    dependencies = /* "required-after:neid;" + */"required-after:Avaritia;" + "required-after:Baubles;"
-        + "required-after:Thaumcraft",
+    dependencies = "required-after:Avaritia;" + "required-after:Baubles;"
+        + "required-after:Thaumcraft;"
+        + "required-after:modularui2;",
 
     acceptedMinecraftVersions = "[1.7.10]")
 public class sthyworks {

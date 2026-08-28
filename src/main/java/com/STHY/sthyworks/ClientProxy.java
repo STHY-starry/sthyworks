@@ -8,14 +8,14 @@ import com.STHY.sthyworks.client.event.ClientEventLoader;
 import com.STHY.sthyworks.client.key.KeyLoader;
 import com.STHY.sthyworks.client.renderer.RenderAdorableGugu;
 import com.STHY.sthyworks.client.renderer.RenderDemonThornProjectile;
-import com.STHY.sthyworks.client.renderer.RenderPathogenesisProjectile;
+import com.STHY.sthyworks.client.renderer.RenderShapedBlock;
 import com.STHY.sthyworks.client.renderer.RenderStrawMan;
 import com.STHY.sthyworks.client.renderer.RenderTileEntityGuguAltar;
+import com.STHY.sthyworks.common.block.specialShapesBase.ShapedBlock;
 import com.STHY.sthyworks.common.entity.AdorableGugu;
 import com.STHY.sthyworks.common.entity.StrawMan;
 import com.STHY.sthyworks.common.entity.withoutEgg.DemonThornProjectile;
 import com.STHY.sthyworks.common.entity.withoutEgg.GuguProjectile;
-import com.STHY.sthyworks.common.entity.withoutEgg.PathogenesisProjectile;
 import com.STHY.sthyworks.common.item.ItemLoader;
 import com.STHY.sthyworks.common.tileentity.TileEntityGuguAltar;
 
@@ -41,6 +41,7 @@ public class ClientProxy extends CommonProxy {
         super.init(event);
         registerEntityRenderers();
         registerTileEntityRenderers();
+        registerBlockRenderers();
         registerItemRenderers();
         new KeyLoader();
         new ClientEventLoader();
@@ -62,8 +63,12 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(GuguProjectile.class, new RenderSnowball(Items.apple, 0));
         RenderingRegistry.registerEntityRenderingHandler(DemonThornProjectile.class, new RenderDemonThornProjectile());
-        RenderingRegistry
-            .registerEntityRenderingHandler(PathogenesisProjectile.class, new RenderPathogenesisProjectile());
+    }
+
+    private void registerBlockRenderers() {
+        int renderId = RenderingRegistry.getNextAvailableRenderId();
+        ShapedBlock.renderId = renderId;
+        RenderingRegistry.registerBlockHandler(new RenderShapedBlock(renderId));
     }
 
     private void registerTileEntityRenderers() {

@@ -22,23 +22,24 @@ public class Seat extends Entity {
         super(world);
         this.setSize(0.0F, 0.0F);
         this.preventEntitySpawning = true;
+    }
+
+    public Seat(World world, Block block) {
+        this(world);
+        this.blockId = Block.getIdFromBlock(block);
         this.magicStoneId = Block.getIdFromBlock(BlockLoader.magicStone);
     }
 
-    public int getBlockId() {
-        return blockId;
-    }
-
-    public void setBlockId(int blockId) {
-        this.blockId = blockId;
-    }
-
-    public int getMagicStoneId() {
-        return magicStoneId;
-    }
-
     @Override
-    protected void entityInit() {}
+    protected void entityInit() {
+        this.dataWatcher.addObject(16, (byte) 0);
+    }
+
+    /*
+     * dataWatcher的16号值作用备注
+     * 0以及其余值：无
+     * 1：法石的vis减免
+     */
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound tag) {
@@ -76,7 +77,7 @@ public class Seat extends Entity {
 
         if (blockId == 0) return;
         if (blockId == magicStoneId) {
-            if (sthyUtils.isAtSpecificTimes(worldObj, 10, 2)) {
+            if (sthyUtils.isAtSpecificTimes(worldObj, 25, 2)) {
                 spawnRandomPrimalAspectOrb(
                     worldObj,
                     player.posX,
@@ -85,8 +86,12 @@ public class Seat extends Entity {
                     1 + player.getRNG()
                         .nextInt(2));
             }
-            // 还通过mixin提高了vis减免
+            // 还通过mixin提高了vis减免，使用dataWatcher确保客户端同步
+            this.dataWatcher.updateObject(16, (byte) 1);
+            return;
         }
+
+        this.dataWatcher.updateObject(16, (byte) 0);
     }
 
     @Override

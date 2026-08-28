@@ -5,15 +5,27 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
 import com.STHY.sthyworks.common.entity.withoutEgg.Seat;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class MagicStone extends Block {
+
+    @SideOnly(Side.CLIENT)
+    private IIcon topIcon;
+    @SideOnly(Side.CLIENT)
+    private IIcon sideIcon;
+    @SideOnly(Side.CLIENT)
+    private IIcon bottomIcon;
 
     public MagicStone() {
         super(Material.rock);
@@ -25,6 +37,25 @@ public class MagicStone extends Block {
         this.setBlockTextureName("sthyworks:magicStone");
         this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(CreativeTabsLoader.tabsthyworks);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        topIcon = reg.registerIcon("sthyworks:magicStone_top");
+        sideIcon = reg.registerIcon("sthyworks:magicStone_side");
+        bottomIcon = reg.registerIcon("sthyworks:magicStone_bottom");
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        if (side == 1) {
+            return topIcon;
+        } else if (side == 0) {
+            return bottomIcon;
+        } else {
+            return sideIcon;
+        }
     }
 
     @Override
@@ -43,9 +74,8 @@ public class MagicStone extends Block {
 
         if (worldIn.isRemote) return true;
 
-        Seat seat = new Seat(worldIn);
+        Seat seat = new Seat(worldIn, this);
         seat.setPosition(x + 0.5, y + 0.5, z + 0.5);
-        seat.setBlockId(Block.getIdFromBlock(this));
         worldIn.spawnEntityInWorld(seat);
         player.mountEntity(seat);
         return true;

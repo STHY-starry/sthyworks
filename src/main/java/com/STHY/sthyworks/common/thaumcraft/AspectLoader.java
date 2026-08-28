@@ -7,7 +7,8 @@ import thaumcraft.api.aspects.Aspect;
 public class AspectLoader {
 
     public static Aspect LOVE;
-    public static Aspect OBSESSED;
+    public static Aspect OBSESSION;
+    public static Aspect ABYSS;
 
     public AspectLoader() {
         registerAspects();
@@ -20,11 +21,17 @@ public class AspectLoader {
             new Aspect[] { Aspect.HEAL, Aspect.SENSES },
             new ResourceLocation("sthyworks", "textures/aspects/amor.png"),
             1);
-        OBSESSED = new Aspect(
+        OBSESSION = new Aspect(
             "obsessus",
             0x6E008A,
             new Aspect[] { AspectLoader.LOVE, Aspect.MAGIC },
             new ResourceLocation("sthyworks", "textures/aspects/obsessus.png"),
+            1);
+        ABYSS = new Aspect(
+            "abyssus",
+            0x1015A9,
+            new Aspect[] { Aspect.DARKNESS, Aspect.EARTH },
+            new ResourceLocation("sthyworks", "textures/aspects/abyssus.png"),
             1);
     }
 }

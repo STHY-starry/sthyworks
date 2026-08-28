@@ -13,17 +13,17 @@ public class EntityConstructing {
     @SubscribeEvent
     public void onEntityJoinWorld(EntityEvent.EntityConstructing event) {
         if (event.entity instanceof EntityLivingBase) {
-            EntityLivingBase entityLivingBase = (EntityLivingBase) event.entity;
-            if (entityLivingBase.getEntityAttribute(STHYAttributes.deadlyPoisonResistance) == null) {
-                entityLivingBase.getAttributeMap()
-                    .registerAttribute(STHYAttributes.deadlyPoisonResistance);
-            }
+            // EntityLivingBase entityLivingBase = (EntityLivingBase) event.entity;
+            // if (entityLivingBase.getEntityAttribute(STHYAttributes.deadlyPoisonResistance) == null) {
+            // entityLivingBase.getAttributeMap()
+            // .registerAttribute(STHYAttributes.deadlyPoisonResistance);
+            // }
 
             if (event.entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) event.entity;
-                if (player.getEntityAttribute(STHYAttributes.pathologyExpertise) == null) {
+                if (player.getEntityAttribute(STHYAttributes.controlOfMagic) == null) {
                     player.getAttributeMap()
-                        .registerAttribute(STHYAttributes.pathologyExpertise);
+                        .registerAttribute(STHYAttributes.controlOfMagic);
                 }
             }
         }

@@ -9,8 +9,8 @@ import com.STHY.sthyworks.common.enchantment.EnchantmentLoader;
 import com.STHY.sthyworks.common.entity.EntityLoader;
 import com.STHY.sthyworks.common.event.EventLoader;
 import com.STHY.sthyworks.common.fluid.FluidLoader;
-import com.STHY.sthyworks.common.inventory.GuiElementLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
+import com.STHY.sthyworks.common.network.NetworkLoader;
 import com.STHY.sthyworks.common.potion.PotionLoader;
 import com.STHY.sthyworks.common.thaumcraft.AspectLoader;
 import com.STHY.sthyworks.common.thaumcraft.ResearchLoader;
@@ -28,6 +28,7 @@ public class CommonProxy {
         Config.synchronizeConfiguration(event);
 
         sthyworks.LOG.info("sthyworks: " + Tags.VERSION);
+        new NetworkLoader();
         new AspectLoader();
         new CreativeTabsLoader();
         new FluidLoader();
@@ -44,7 +45,6 @@ public class CommonProxy {
         new EnchantmentLoader();
         new EventLoader();
         new WorldGeneratorLoader();
-        new GuiElementLoader();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

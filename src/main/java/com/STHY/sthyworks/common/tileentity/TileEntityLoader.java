@@ -10,6 +10,7 @@ public class TileEntityLoader {
 
     public TileEntityLoader() {
         registerTileEntity(TileEntityGuguAltar.class, "guguAltar");
+        registerTileEntity(TileEntityVoidGate.class, "voidGate");
     }
 
     public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id) {

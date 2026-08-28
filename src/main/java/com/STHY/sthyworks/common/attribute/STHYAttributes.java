@@ -5,18 +5,12 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 
 public class STHYAttributes {
 
-    public static final IAttribute pathologyExpertise = createRangedAttribute(
-        "sthyworks.pathologyExpertise",
-        "Pathology Expertise",
+    public static final IAttribute controlOfMagic = createRangedAttribute(
+        "sthyworks.controlOfMagic",
+        "Control of Magic",
         1.0D,
         1.0D,
         4096.0D);
-    public static final IAttribute deadlyPoisonResistance = createRangedAttribute(
-        "sthyworks.deadlyPoisonResistance",
-        "Deadly Poison Resistance",
-        0.0D,
-        0.0D,
-        1.0D);
 
     private static IAttribute createRangedAttribute(String unlocalizedName, String description, double defaultValue,
         double minValue, double maxValue) {

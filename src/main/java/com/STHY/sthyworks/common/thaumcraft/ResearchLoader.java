@@ -61,7 +61,7 @@ public class ResearchLoader {
             "NEW_ASPECT",
             "STHYWORKS",
             new AspectList(),
-            0,
+            2,
             0,
             0,
             new ResourceLocation("thaumcraft", "textures/misc/r_aspects.png"))
@@ -69,7 +69,7 @@ public class ResearchLoader {
                     new ResearchPage("sthyworks.research_page.NEW_ASPECT.1"),
                     new ResearchPage(
                         new AspectList().add(AspectLoader.LOVE, 1)
-                            .add(AspectLoader.OBSESSED, 1)))
+                            .add(AspectLoader.OBSESSION, 1)))
                 .setAutoUnlock()
                 .setRound()
                 .registerResearchItem();

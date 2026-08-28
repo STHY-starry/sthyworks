@@ -1,11 +1,8 @@
 package com.STHY.sthyworks.common.crafting;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.STHY.sthyworks.Config;
-import com.STHY.sthyworks.common.block.BlockLoader;
 import com.STHY.sthyworks.common.item.ItemLoader;
 
 import cpw.mods.fml.common.IFuelHandler;
@@ -24,11 +21,6 @@ public class Fuel {
 
                 if (fuel.getItem() == ItemLoader.superPork) {
                     return 3200;
-                }
-
-                if (fuel.getItem() == Item.getItemFromBlock(BlockLoader.pigBlock)) {
-
-                    return Config.pigBlockBurnTime;
                 }
 
                 return 0;

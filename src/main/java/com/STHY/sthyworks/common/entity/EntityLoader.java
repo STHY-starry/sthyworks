@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 
 import com.STHY.sthyworks.common.entity.withoutEgg.DemonThornProjectile;
 import com.STHY.sthyworks.common.entity.withoutEgg.GuguProjectile;
-import com.STHY.sthyworks.common.entity.withoutEgg.PathogenesisProjectile;
 import com.STHY.sthyworks.common.entity.withoutEgg.Seat;
 import com.STHY.sthyworks.sthyworks;
 
@@ -20,7 +19,6 @@ public class EntityLoader {
 
         registerWithoutEgg(GuguProjectile.class, "GuguProjectile", 64, 1, true);
         registerWithoutEgg(DemonThornProjectile.class, "DemonThornProjectile", 64, 1, true);
-        registerWithoutEgg(PathogenesisProjectile.class, "PathogenesisProjectile", 64, 1, true);
         registerWithoutEgg(Seat.class, "Seat", 64, 1, false);
     }
 

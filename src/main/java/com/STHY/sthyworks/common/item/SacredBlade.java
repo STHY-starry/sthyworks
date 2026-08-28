@@ -39,7 +39,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SacredBlade extends ItemSword {
 
     @SideOnly(Side.CLIENT)
-    IIcon[] icons = new IIcon[3];
+    IIcon iconPowerUp;
+    @SideOnly(Side.CLIENT)
+    IIcon iconIce;
 
     public static final Item.ToolMaterial SacredBladeMaterial = EnumHelper
         .addToolMaterial("SacredBladeMaterial", 0, 0, 10.0F, -3.0F, 22);
@@ -89,9 +91,8 @@ public class SacredBlade extends ItemSword {
 
     @Override
     public void registerIcons(IIconRegister register) {
-        icons[0] = register.registerIcon("sthyworks:sacredBlade_0");
-        icons[1] = register.registerIcon("sthyworks:sacredBlade_1");
-        icons[2] = register.registerIcon("sthyworks:sacredBlade_2");
+        iconPowerUp = register.registerIcon("sthyworks:sacredBlade_powerUp");
+        iconIce = register.registerIcon("sthyworks:sacredBlade_ice");
     }
 
     @Override
@@ -101,9 +102,9 @@ public class SacredBlade extends ItemSword {
         }
         NBTTagCompound tag = stack.getTagCompound();
         if (tag.getInteger("kshana") > 0) {
-            return icons[2];
+            return iconIce;
         }
-        return icons[0];
+        return itemIcon;
     }
 
     @Override
@@ -113,16 +114,16 @@ public class SacredBlade extends ItemSword {
         }
         NBTTagCompound tag = stack.getTagCompound();
         if (tag.getInteger("kshana") > 0) {
-            return icons[2];
+            return iconIce;
         }
         if (usingItem == null) {
-            return icons[0];
+            return itemIcon;
         }
         int usedTime = this.getMaxItemUseDuration(stack) - useRemaining;
         if (usedTime >= 16) {
-            return icons[1];
+            return iconPowerUp;
         }
-        return icons[0];
+        return itemIcon;
     }
 
     @Override
@@ -138,7 +139,7 @@ public class SacredBlade extends ItemSword {
 
         // 刹那状态
         if (tag.getInteger("kshana") > 0) {
-            if (!worldIn.isRemote) {
+            if (isHeld && player.swingProgress == 0.16666667F && !worldIn.isRemote) {
                 EntityLivingBase target = sthyUtils.getClosestTarget(worldIn, player, 10);
                 if (target != null) {
                     if (target.getDistanceSq(player.posX, player.posY, player.posZ) <= 1.4) return;
@@ -172,7 +173,7 @@ public class SacredBlade extends ItemSword {
         }
 
         // 常规状态 一闪
-        if (player.getCurrentEquippedItem() == stack && player.swingProgress == 0.16666667F) {
+        if (isHeld && player.swingProgress == 0.16666667F) {
             if (player.getFoodStats()
                 .getFoodLevel() > 1) {
                 player.getFoodStats()
@@ -180,11 +181,7 @@ public class SacredBlade extends ItemSword {
             } else {
                 return;
             }
-            double boost = 5.0D;
-            Vec3 lookVec = player.getLookVec();
-            player.motionX += lookVec.xCoord * boost;
-            player.motionY += lookVec.yCoord * boost;
-            player.motionZ += lookVec.zCoord * boost;
+            sprint(player, 5.0D);
             if (!worldIn.isRemote) {
                 tag.setInteger("sprint", 8);
             }
@@ -215,7 +212,7 @@ public class SacredBlade extends ItemSword {
                 }
             }
             playerSpawnParticle(player, "snowshovel", 64, 1.0D);
-            stepBack(player, -1.1D);
+            sprint(player, -1.5D);
         } else {
             // 常规状态
             player.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
@@ -248,12 +245,12 @@ public class SacredBlade extends ItemSword {
                 edgeReturn(player, target, true);
                 tag.setInteger("kshana", 60);
                 player.getFoodStats()
-                    .addStats(20, 0.5F);
+                    .addStats(20, 1.0F);
             } else {
                 edgeReturn(player, target, false);
             }
         } else if (usedTime >= 4) {
-            stepBack(player, -0.7D);
+            sprint(player, -1.2D);
         }
     }
 
@@ -288,7 +285,7 @@ public class SacredBlade extends ItemSword {
     }
 
     public void playerSpawnParticle(EntityPlayer player, String particleName, int particleCount,
-        double velocityCoefficient) {
+                                    double velocityCoefficient) {
         Random rand = player.getRNG();
         for (int i = 0; i < particleCount; i++) {
             player.worldObj.spawnParticle(
@@ -302,7 +299,7 @@ public class SacredBlade extends ItemSword {
         }
     }
 
-    private void stepBack(EntityPlayer player, double boost) {
+    private void sprint(EntityPlayer player, double boost) {
         Vec3 lookVec = player.getLookVec();
         double xCoord = lookVec.xCoord / (Math.abs(lookVec.xCoord) + Math.abs(lookVec.zCoord));
         double zCoord = lookVec.zCoord / (Math.abs(lookVec.xCoord) + Math.abs(lookVec.zCoord));

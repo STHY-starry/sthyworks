@@ -1,5 +1,6 @@
 package com.STHY.sthyworks.common.item;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
@@ -13,10 +14,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+import com.STHY.sthyworks.common.enchantment.EnchantmentLoader;
 
 public class PigPickaxe extends ItemPickaxe {
 
-    public static final Item.ToolMaterial PIG = EnumHelper.addToolMaterial("PIG", 3, 1561, 6.0F, 2.0F, 14)
+    public static final Item.ToolMaterial PIG = EnumHelper.addToolMaterial("PIG", 3, 1561, 8.0F, 3.0F, 10)
         .setRepairItem(new ItemStack(Items.porkchop, 1));
 
     public PigPickaxe() {
@@ -44,6 +46,9 @@ public class PigPickaxe extends ItemPickaxe {
 
     @Override
     public ItemStack onEaten(ItemStack itemStack, World worldIn, EntityPlayer player) {
+
+        int multiplier = EnchantmentHelper.getEnchantmentLevel(EnchantmentLoader.magicBoost.effectId, itemStack);
+
         int expendedDamage = Math.max(1, (int) (0.25F * (itemStack.getMaxDamage() - itemStack.getItemDamage())));
         itemStack.damageItem(expendedDamage, player);
         player.getFoodStats()
@@ -52,8 +57,8 @@ public class PigPickaxe extends ItemPickaxe {
         player.addPotionEffect(
             new PotionEffect(
                 Potion.digSpeed.getId(),
-                expendedDamage * expendedDamage / 250 + 100,
-                expendedDamage / 100));
+                expendedDamage * expendedDamage / 250 + 100 * (multiplier + 1),
+                expendedDamage / (100 - multiplier)));
         return itemStack;
     }
 }

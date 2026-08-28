@@ -52,6 +52,11 @@ public class MilkTea extends ItemFood {
     }
 
     @Override
+    public boolean isItemTool(ItemStack p_77616_1_) {
+        return false;
+    }
+
+    @Override
     public ItemStack onEaten(ItemStack itemStack, World worldIn, EntityPlayer player) {
         itemStack.damageItem(1, player);
         player.getFoodStats()
