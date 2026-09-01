@@ -58,7 +58,7 @@ public class PigPickaxe extends ItemPickaxe {
             new PotionEffect(
                 Potion.digSpeed.getId(),
                 expendedDamage * expendedDamage / 250 + 100 * (multiplier + 1),
-                expendedDamage / (100 - multiplier)));
+                Math.min(expendedDamage / (100 - Math.min(multiplier, 99)), 9)));
         return itemStack;
     }
 }

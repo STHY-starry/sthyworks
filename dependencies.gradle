@@ -44,6 +44,6 @@ dependencies {
     devOnlyNonPublishable("com.github.GTNewHorizons:Baubles-Expanded:2.2.21-GTNH:dev")
     devOnlyNonPublishable("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     devOnlyNonPublishable("com.github.GTNewHorizons:ModularUI2:2.3.85-1.7.10:dev")
-    devOnlyNonPublishable("com.github.GTNewHorizons:ThaumicBoots:1.5.12:dev")
+//    devOnlyNonPublishable("com.github.GTNewHorizons:ThaumicBoots:1.5.12:dev")
 //    devOnlyNonPublishable("com.github.GTNewHorizons:StructureLib:1.4.42:dev")
 }

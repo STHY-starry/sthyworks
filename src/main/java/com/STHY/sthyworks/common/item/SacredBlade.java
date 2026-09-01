@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -50,7 +51,6 @@ public class SacredBlade extends ItemSword {
         super(SacredBladeMaterial);
         this.setUnlocalizedName("sacredBlade");
         this.setCreativeTab(CreativeTabsLoader.tabsthyworks);
-        this.setTextureName("sthyworks:sacredBlade");
     }
 
     @Override
@@ -91,6 +91,7 @@ public class SacredBlade extends ItemSword {
 
     @Override
     public void registerIcons(IIconRegister register) {
+        itemIcon = register.registerIcon("sthyworks:sacredBlade");
         iconPowerUp = register.registerIcon("sthyworks:sacredBlade_powerUp");
         iconIce = register.registerIcon("sthyworks:sacredBlade_ice");
     }
@@ -116,7 +117,7 @@ public class SacredBlade extends ItemSword {
         if (tag.getInteger("kshana") > 0) {
             return iconIce;
         }
-        if (usingItem == null) {
+        if (usingItem != stack) {
             return itemIcon;
         }
         int usedTime = this.getMaxItemUseDuration(stack) - useRemaining;
@@ -139,11 +140,13 @@ public class SacredBlade extends ItemSword {
 
         // 刹那状态
         if (tag.getInteger("kshana") > 0) {
-            if (isHeld && player.swingProgress == 0.16666667F && !worldIn.isRemote) {
-                EntityLivingBase target = sthyUtils.getClosestTarget(worldIn, player, 10);
-                if (target != null) {
-                    if (target.getDistanceSq(player.posX, player.posY, player.posZ) <= 1.4) return;
-                    edgeReturn(player, target, true);
+            if (!worldIn.isRemote) {
+                if (isHeld && player.swingProgressInt == 1) {
+                    EntityLivingBase target = sthyUtils.getClosestTarget(worldIn, player, 12);
+                    if (target != null) {
+                        if (target.getDistanceSq(player.posX, player.posY, player.posZ) <= 1.4) return;
+                        edgeReturn(player, target, true);
+                    }
                 }
                 tag.setInteger("kshana", tag.getInteger("kshana") - 1);
             }
@@ -173,7 +176,7 @@ public class SacredBlade extends ItemSword {
         }
 
         // 常规状态 一闪
-        if (isHeld && player.swingProgress == 0.16666667F) {
+        if (isHeld && player.swingProgressInt == 1) {
             if (player.getFoodStats()
                 .getFoodLevel() > 1) {
                 player.getFoodStats()
@@ -181,7 +184,7 @@ public class SacredBlade extends ItemSword {
             } else {
                 return;
             }
-            sprint(player, 5.0D);
+            sprint(player, 4.5D);
             if (!worldIn.isRemote) {
                 tag.setInteger("sprint", 8);
             }
@@ -211,8 +214,8 @@ public class SacredBlade extends ItemSword {
                     player.attackTargetEntityWithCurrentItem(entityLivingBase);
                 }
             }
-            playerSpawnParticle(player, "snowshovel", 64, 1.0D);
-            sprint(player, -1.5D);
+            playerSpawnParticle(player, "snowshovel", 32, 1.0D);
+            sprint(player, -2.5D);
         } else {
             // 常规状态
             player.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
@@ -225,7 +228,7 @@ public class SacredBlade extends ItemSword {
         if (ItemStoreEntityUUID.hasStoredEntityUUID(stack)) {
             int usedTime = this.getMaxItemUseDuration(stack) - count;
             if (player.worldObj.isRemote && usedTime == 16) {
-                playerSpawnParticle(player, "instantSpell", 64, 1.0D);
+                playerSpawnParticle(player, "instantSpell", 32, 1.0D);
             }
         }
     }
@@ -241,16 +244,16 @@ public class SacredBlade extends ItemSword {
             EntityLivingBase target = ItemStoreEntityUUID.getItemStoredEntity(world, stack, EntityLivingBase.class);
             ItemStoreEntityUUID.clearStoredEntityUUID(stack);
             if (target == null) return;
-            if (usedTime < 20) {
+            if (usedTime < 18) {
                 edgeReturn(player, target, true);
-                tag.setInteger("kshana", 60);
+                tag.setInteger("kshana", 80);
                 player.getFoodStats()
                     .addStats(20, 1.0F);
             } else {
                 edgeReturn(player, target, false);
             }
         } else if (usedTime >= 4) {
-            sprint(player, -1.2D);
+            sprint(player, -1.8D);
         }
     }
 
@@ -291,7 +294,7 @@ public class SacredBlade extends ItemSword {
             player.worldObj.spawnParticle(
                 particleName,
                 player.posX + (rand.nextDouble() * 2.0D - 1.0D) * player.width,
-                player.posY + 2,
+                player.posY + player.getEyeHeight() / 2,
                 player.posZ + (rand.nextDouble() * 2.0D - 1.0D) * player.width,
                 (rand.nextDouble() - 0.5D) * velocityCoefficient,
                 (rand.nextDouble() - 0.5D) * velocityCoefficient,

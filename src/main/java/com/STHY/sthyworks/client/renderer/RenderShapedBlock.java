@@ -39,6 +39,8 @@ public class RenderShapedBlock implements ISimpleBlockRenderingHandler {
             for (int side = 0; side < 6; side++) {
                 IIcon icon = ((IShapedBlock) block).getLayerIcon(null, 0, 0, 0, metadata, i, side);
                 tessellator.startDrawingQuads();
+                float shade = side == 0 ? 0.5F : (side == 1 ? 1.0F : (side <= 3 ? 0.8F : 0.6F));
+                tessellator.setColorOpaque_F(shade, shade, shade);
                 this.drawFace(block, side, renderer, tessellator, icon);
                 tessellator.draw();
             }
@@ -61,6 +63,9 @@ public class RenderShapedBlock implements ISimpleBlockRenderingHandler {
             }
             renderer.setRenderBounds(layer[0], layer[1], layer[2], layer[3], layer[4], layer[5]);
             rendered |= renderer.renderStandardBlock(block, x, y, z);
+        }
+        if (block instanceof ShapedBlock) {
+            ((ShapedBlock) block).resetRenderingContext();
         }
         return rendered;
     }

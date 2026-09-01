@@ -38,7 +38,10 @@ public class sthyUtils {
                 continue;
             }
             Vec3 entityPos = Vec3.createVectorHelper(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
-            if (worldIn.rayTraceBlocks(startPos, entityPos) != null) continue;
+            // 1.7.10 的 rayTraceBlocks 会原地改写第一个参数（拿它当游标逐格推进），
+            // 这里必须传一次性副本，不能复用 startPos，否则后续实体的射线起点会被污染
+            Vec3 rayStart = Vec3.createVectorHelper(startPos.xCoord, startPos.yCoord, startPos.zCoord);
+            if (worldIn.rayTraceBlocks(rayStart, entityPos) != null) continue;
             float borderSize = entity.getCollisionBorderSize();
             AxisAlignedBB aabb = entity.boundingBox.expand(borderSize, borderSize, borderSize);
             MovingObjectPosition EntityMop = aabb.calculateIntercept(startPos, endPos);

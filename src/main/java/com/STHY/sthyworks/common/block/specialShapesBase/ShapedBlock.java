@@ -22,7 +22,7 @@ public abstract class ShapedBlock extends Block implements IShapedBlock {
     private int renderingX;
     private int renderingY;
     private int renderingZ;
-    private int renderingLayerIndex;
+    private int renderingLayerIndex = -1;
 
     protected ShapedBlock(Material material, float[][] shapeLayers) {
         super(material);
@@ -39,10 +39,24 @@ public abstract class ShapedBlock extends Block implements IShapedBlock {
         this.renderingLayerIndex = layerIndex;
     }
 
+    public void resetRenderingContext() {
+        this.renderingWorld = null;
+        this.renderingX = 0;
+        this.renderingY = 0;
+        this.renderingZ = 0;
+        this.renderingLayerIndex = -1;
+    }
+
     @Override
     public IIcon getIcon(int side, int meta) {
-        return this.getLayerIcon(this.renderingWorld, this.renderingX, this.renderingY, this.renderingZ, meta,
-            this.renderingLayerIndex, side);
+        return this.getLayerIcon(
+            this.renderingWorld,
+            this.renderingX,
+            this.renderingY,
+            this.renderingZ,
+            meta,
+            this.renderingLayerIndex,
+            side);
     }
 
     @Override
@@ -72,7 +86,7 @@ public abstract class ShapedBlock extends Block implements IShapedBlock {
 
     @Override
     public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask,
-                                        List<AxisAlignedBB> list, Entity collider) {
+        List<AxisAlignedBB> list, Entity collider) {
         for (float[] layer : this.shapeLayers) {
             this.setBlockBounds(layer[0], layer[1], layer[2], layer[3], layer[4], layer[5]);
             super.addCollisionBoxesToList(worldIn, x, y, z, mask, list, collider);

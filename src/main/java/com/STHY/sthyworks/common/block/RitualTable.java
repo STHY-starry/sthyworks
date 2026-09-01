@@ -1,7 +1,5 @@
 package com.STHY.sthyworks.common.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -14,6 +12,9 @@ import net.minecraft.world.World;
 import com.STHY.sthyworks.common.block.specialShapesBase.BlockShapes;
 import com.STHY.sthyworks.common.block.specialShapesBase.ShapedBlock;
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class RitualTable extends ShapedBlock implements ITileEntityProvider {
 
@@ -40,12 +41,10 @@ public class RitualTable extends ShapedBlock implements ITileEntityProvider {
         this.blockIcon = reg.registerIcon("sthyworks:ritual_table_base");
         this.ordoAndPerditioIcon = reg.registerIcon("sthyworks:ritual_table_op");
         this.opSideIcon = reg.registerIcon("sthyworks:ritual_table_opSide");
-        this.pillarIcons = new IIcon[] {
-            reg.registerIcon("sthyworks:ritualTable_pillar_aer"),
+        this.pillarIcons = new IIcon[] { reg.registerIcon("sthyworks:ritualTable_pillar_aer"),
             reg.registerIcon("sthyworks:ritualTable_pillar_terra"),
             reg.registerIcon("sthyworks:ritualTable_pillar_ignis"),
-            reg.registerIcon("sthyworks:ritualTable_pillar_aqua")
-        };
+            reg.registerIcon("sthyworks:ritualTable_pillar_aqua") };
     }
 
     @Override
@@ -54,9 +53,9 @@ public class RitualTable extends ShapedBlock implements ITileEntityProvider {
             return this.pillarIcons[layerIndex - 2];
         }
         if (layerIndex == 1) {
-            if (side == 1){
+            if (side == 1) {
                 return this.ordoAndPerditioIcon;
-            }else if (side != 0){
+            } else if (side != 0) {
                 return this.opSideIcon;
             }
         }

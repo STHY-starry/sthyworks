@@ -46,6 +46,8 @@ public class ImmortalSword extends ItemSword {
             if (target != null) {
                 player.attackTargetEntityWithCurrentItem(target);
             }
+        } else {
+            sthyUtils.getClosestTarget(worldIn, player, 20.0D);
         }
         super.onItemRightClick(itemStackIn, worldIn, player);
         return itemStackIn;

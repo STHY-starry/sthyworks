@@ -17,7 +17,6 @@ item.devilEtherealWing.name=§7灵翼
 item.guguSphere.name=§c咕咕球
 item.sacredBlade.name=§d神刀
 item.sacredBlade_Ice.name=§b神刀
-item.phantomRing.name=幻影戒指
 item.waterSageSpell.name=水之贤者魔咒
 item.venerableShadow.name=尊者之影
 tile.guguBlock.name=§c咕咕方块
@@ -157,12 +156,8 @@ book.instructionManual.page7.line4=虚空之门顶面接收到红石信号上升
 book.instructionManual.page7.line5=虚空之门开机后，若处于闲置状态，则每50t检测范围内是否有可破坏的方块。若有，则开始工作。
 book.instructionManual.page7.line6=虚空之门工作时会逐渐清空范围内的所有硬度大于0的方块，每t挖8个。挖完之后再次检测区域，若仍有可破坏方块则返工。
 book.instructionManual.page7.line7=工作期间持续从底面发出红石信号。工作完成后从正面发出持续4t的信号。
-book.instructionManual.page8.line1=
-book.instructionManual.page8.line2=
-book.instructionManual.page8.line3=
-book.instructionManual.page8.line4=
-book.instructionManual.page8.line5=
-book.instructionManual.page8.line6=
+book.instructionManual.page8.line1=懒得写了，本书停更
+
 
 gui.sthyworks.voidGate.title=虚空之门
 gui.sthyworks.voidGate.TurnOnStatus=开启状态：
