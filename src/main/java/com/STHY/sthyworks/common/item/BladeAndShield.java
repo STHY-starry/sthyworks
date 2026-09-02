@@ -1,6 +1,8 @@
 package com.STHY.sthyworks.common.item;
 
+import com.STHY.sthyworks.common.util.sthyUtils;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -16,6 +18,7 @@ import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class BladeAndShield extends ItemSword implements IItemShield {
 
@@ -44,24 +47,60 @@ public class BladeAndShield extends ItemSword implements IItemShield {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, EntityPlayer player, int count) {
-        player.addPotionEffect(new PotionEffect(Potion.field_76444_x.getId(), 2, 0));
-        if (!stack.hasTagCompound()){
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slotIndex, boolean isHeld) {
+        if (worldIn.isRemote) return;
+        if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
         NBTTagCompound tag = stack.getTagCompound();
-        tag.setBoolean("isUsing", true);
+        if (tag.getInteger("parryTime") > 0) {
+            tag.setInteger("parryTime", tag.getInteger("parryTime") - 1);
+        }
+    }
+
+    @Override
+    public void onUsingTick(ItemStack stack, EntityPlayer player, int count) {
+        if (player.worldObj.isRemote) return;
+        if (count % 5 == 0) {
+            player.addPotionEffect(new PotionEffect(Potion.field_76444_x.getId(), 10, 0));
+        }
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
+        if (!itemStackIn.hasTagCompound()) {
+            itemStackIn.setTagCompound(new NBTTagCompound());
+        }
+        NBTTagCompound tag = itemStackIn.getTagCompound();
+        tag.setInteger("parryTime", 0);
+        return super.onItemRightClick(itemStackIn, worldIn, player);
     }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int count) {
-
+        if (world.isRemote) return;
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        NBTTagCompound tag = stack.getTagCompound();
+        int usedTime = this.getMaxItemUseDuration(stack) - count;
+        if (usedTime > 10){
+            tag.setInteger("parryTime", 5);
+        }
     }
 
     @Override
-    public void onOwnerHurt(ItemStack stack, EntityPlayer player, DamageSource source, float amount) {
-        if (!stack.hasTagCompound()){
+    public void onOwnerHurt(ItemStack stack, EntityPlayer player, LivingHurtEvent event) {
+        if (player.worldObj.isRemote) return;
+        if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
+        }
+        NBTTagCompound tag = stack.getTagCompound();
+        if (tag.getInteger("parryTime") > 0) {
+            tag.setInteger("parryTime", 0);
+            event.ammount *= 0.1F;
+            player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 100, 2));
+            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 100, 1));
         }
     }
 }

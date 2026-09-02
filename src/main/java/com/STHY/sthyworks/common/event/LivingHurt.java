@@ -20,13 +20,13 @@ public class LivingHurt {
         }
 
         // 盾类武器效果
-        if (event.entityLiving instanceof EntityPlayer) {
+        if (event.entityLiving instanceof EntityPlayer && !event.source.isUnblockable()) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof IItemShield) {
                 IItemShield item = (IItemShield) player.getHeldItem()
                     .getItem();
-                item.onOwnerHurt(player.getHeldItem(), player, event.source, event.ammount);
+                item.onOwnerHurt(player.getHeldItem(), player, event);
             }
         }
     }

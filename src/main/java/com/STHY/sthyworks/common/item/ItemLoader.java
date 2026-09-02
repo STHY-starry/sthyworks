@@ -26,6 +26,7 @@ public class ItemLoader {
     public static Item guguSphere = new GuguSphere();
     public static Item sacredBlade = new SacredBlade();
     public static Item waterSageSpell = new WaterSageSpell();
+    public static Item bladeAndShield = new BladeAndShield();
 
     public static ItemArmor dyeHelmet = new DyeArmor(0, "dyeHelmet", "dye");
     public static ItemArmor dyeChestplate = new DyeArmor(1, "dyeChestplate", "dye");
@@ -49,6 +50,7 @@ public class ItemLoader {
         register(guguSphere, "guguSphere");
         register(sacredBlade, "sacredBlade");
         register(waterSageSpell, "waterSageSpell");
+        register(bladeAndShield, "bladeAndShield");
 
         register(dyeHelmet, "dyeHelmet");
         register(dyeChestplate, "dyeChestplate");
