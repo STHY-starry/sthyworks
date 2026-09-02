@@ -1,6 +1,5 @@
 package com.STHY.sthyworks.common.item;
 
-import com.STHY.sthyworks.common.util.sthyUtils;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,16 +8,15 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import com.STHY.sthyworks.api.IItemShield;
 import com.STHY.sthyworks.common.creativetab.CreativeTabsLoader;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class BladeAndShield extends ItemSword implements IItemShield {
 
@@ -84,7 +82,7 @@ public class BladeAndShield extends ItemSword implements IItemShield {
         }
         NBTTagCompound tag = stack.getTagCompound();
         int usedTime = this.getMaxItemUseDuration(stack) - count;
-        if (usedTime > 10){
+        if (usedTime > 10) {
             tag.setInteger("parryTime", 5);
         }
     }

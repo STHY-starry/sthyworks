@@ -23,7 +23,8 @@ public class LivingHurt {
         if (event.entityLiving instanceof EntityPlayer && !event.source.isUnblockable()) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-            if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof IItemShield) {
+            if (player.getHeldItem() != null && player.getHeldItem()
+                .getItem() instanceof IItemShield) {
                 IItemShield item = (IItemShield) player.getHeldItem()
                     .getItem();
                 item.onOwnerHurt(player.getHeldItem(), player, event);

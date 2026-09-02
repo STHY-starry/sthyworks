@@ -16,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -288,7 +287,7 @@ public class SacredBlade extends ItemSword {
     }
 
     public void playerSpawnParticle(EntityPlayer player, String particleName, int particleCount,
-                                    double velocityCoefficient) {
+        double velocityCoefficient) {
         Random rand = player.getRNG();
         for (int i = 0; i < particleCount; i++) {
             player.worldObj.spawnParticle(
